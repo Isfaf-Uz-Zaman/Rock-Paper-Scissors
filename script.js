@@ -1,106 +1,71 @@
-var humanScore = 0;
-var computerScore = 0;
+
+let resultSpace = document.getElementsByTagName("h1")[0];
+let gameButtons = document.querySelectorAll("#gameButton");
+let winCounter=0;
+let loseCounter=0;
+let finalResult = document.createElement("div")
 
 
-function playGame() {
+Array.from(gameButtons).forEach(button=>{
+  button.addEventListener('click', () => {
 
-    for (let i = 0; i <= 5; i++) {
-        let UserValue = prompt("Please enter your choice 1= Rock ,2 = Paper, 3 = Scissors");
-        function playRound(humanChoice, computerChoice) {
-            if (humanChoice == computerChoice) {
-        
-                humanScore = humanScore;
-                computerScore = computerScore;
-        
-        
-            }
-        
-            // Paper VS Rock
-            else if (humanChoice == "Rock" && computerChoice == "Paper") {
-        
-                computerScore = computerScore + 1;
-            }
-            else if (humanChoice == "Paper" && computerChoice == "Rock") {
-        
-                humanScore = humanScore + 1;
-            }
-        
-            // Scissors VS Rock
-        
-            else if (humanChoice == "Scissors" && computerChoice == "Rock") {
-        
-                computerScore = computerScore + 1;
-            }
-            else if (humanChoice == "Rock" && computerChoice == "Scissors") {
-        
-                humanScore = humanScore + 1;
-            }
-        
-            // Scissors VS Paper
-            else if (humanChoice == "Paper" && computerChoice == "Scissors") {
-        
-                computerScore = computerScore + 1;
-            }
-            else if (humanChoice == "Scissors" && computerChoice == "Paper") {
-        
-                humanScore = humanScore + 1;
-            }
-        }
-        
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+  let randomNumber= Math.random();
 
-        // This part gives What is chosen by computer
-        function getComputerChoice() {
-            let computerValue = Math.floor(Math.random() * 10);
-
-            //  MAke a logical rule  0--4 = Rock
-            // 5-7= Paper 
-            // 8-10= Scissors
-
-            if (0 <= computerValue && computerValue <= 4) {
-                return "Rock";
-            } else if (5 <= computerValue && computerValue <= 7) {
-                return "Paper";
-            }
-            else {
-                return "Scissors";
-            }
-
-
-        }
-
-
-
-
-        var computerValue1 = getComputerChoice()
-
-
-        
-
-
-        function getHumanChoice() {
-
-            if (UserValue == 1) {
-                return "Rock";
-            } else if (UserValue == 2) {
-                return "Paper";
-            }
-            else if (UserValue == 3) {
-                return "Scissors";
-            }
-        }
-        let HumanValue1 = getHumanChoice()
-
-        playRound(HumanValue1, computerValue1);
-
-
+  if (randomNumber<=0.3){
+    if (button.innerHTML === "rock") {
+      resultSpace.innerHTML=`I choosed rock, its a draw, you:${winCounter} Com:${loseCounter}`;
+    } 
+    if (button.innerHTML === "paper") {
+      resultSpace.innerHTML=`I choosed rock, you:${winCounter+=1} Com:${loseCounter}`;
     }
-}
-playGame();
+    if (button.innerHTML === "scissors") {
+      resultSpace.innerHTML=`I choosed rock, you:${winCounter} Com:${loseCounter+=1}`;
+    }
+    }
+
+    if (randomNumber>=0.6){
+    if (button.innerHTML === "rock") {
+      resultSpace.innerHTML=`I choosed paper, you:${winCounter} Com:${loseCounter+=1}`;
+    } 
+    if (button.innerHTML === "paper") {
+      resultSpace.innerHTML=`I choosed paper, its a draw, you:${winCounter} Com:${loseCounter}`;
+    }
+    if (button.innerHTML === "scissors") {
+      resultSpace.innerHTML=`I choosed paper, you:${winCounter+=1} Com:${loseCounter}`;
+    }
+    }
+
+    if (randomNumber<0.6 && randomNumber>0.3){
+
+    if (button.innerHTML === "rock") {
+      resultSpace.innerHTML=`I choosed scissors, you:${winCounter+=1} Com:${loseCounter}`;
+    } 
+    if (button.innerHTML === "paper") {
+      resultSpace.innerHTML=`I choosed scissors, you:${winCounter} Com:${loseCounter+=1}`;
+    }
+    if (button.innerHTML === "scissors") {
+      resultSpace.innerHTML=`I choosed scissors so do you, its a draw, you:${winCounter} Com:${loseCounter}`;
+    }
+    
+  }
+
+  //checking who ever got 5 points first, and announcing whether the player won or lost
+    if (winCounter===5) {
+      finalResult.innerHTML="You won!";
+      resultSpace.appendChild(finalResult);
+      winCounter=0;
+      loseCounter=0;
+    }
+    if (loseCounter===5) {
+      finalResult.innerHTML="You lost!";
+      resultSpace.appendChild(finalResult);
+      winCounter=0;
+      loseCounter=0;
+    }
+
+  // reset
+  randomNumber=0;
+  })
 
 
-console.log("THe score of Human is",humanScore);
-
-console.log("THe score of Computer is " ,computerScore);
-
+});
