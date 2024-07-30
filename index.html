@@ -1,17 +1,55 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
     
-    <link rel="stylesheet" href="styles.css">
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
-    <h1>Hello, choose to start playing</h1>
-    <button  id="gameButton" class="gameButton" >rock</button>
-    <button  id="gameButton" class="gameButton" >paper</button>
-    <button  id="gameButton" class="gameButton" >scissors</button>
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
+    
+</head>
 
+
+
+<body>
+    <div class="container">
+        <div class="ChildContainer">
+            <div class="PlayerPCScore">
+                <div class="Human" >
+                    <p id=" Human">Player Score Is 0</p>
+                </div>
+                <div class="Computer" >
+                    <p id="Computer">Computer Score Is 0</p>
+
+                </div>
+
+            </div>
+            <div class="ChoiceButtons">
+
+
+                <div class="circleButtonRock"><a href="#" id="myBtnRock1" >Rock</a></div>
+                <div class="circleButtonRock"><a href="#"id="myBtnPaper2" >Paper</a></div>
+                <div class="circleButtonRock"><a href="#" id="myBtnScissors3" >Scissors</a></div>
+            </div>
+            <div class="Gameresult">
+                <h1>First One To Reach Point 5 Wins.</h1>
+            </div>
+        </div>
+
+
+    </div>
+
+   
+
+    
+    
     <script src="script.js"></script>
+   
 
-  </body>
+</body>
+
 </html>

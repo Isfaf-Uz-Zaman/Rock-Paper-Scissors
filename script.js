@@ -1,71 +1,146 @@
+var humanScore = 0;
+var computerScore = 0;
 
-let resultSpace = document.getElementsByTagName("h1")[0];
-let gameButtons = document.querySelectorAll("#gameButton");
-let winCounter=0;
-let loseCounter=0;
-let finalResult = document.createElement("div")
+let humanChoice = 0;
 
 
-Array.from(gameButtons).forEach(button=>{
-  button.addEventListener('click', () => {
-
-  let randomNumber= Math.random();
-
-  if (randomNumber<=0.3){
-    if (button.innerHTML === "rock") {
-      resultSpace.innerHTML=`I choosed rock, its a draw, you:${winCounter} Com:${loseCounter}`;
-    } 
-    if (button.innerHTML === "paper") {
-      resultSpace.innerHTML=`I choosed rock, you:${winCounter+=1} Com:${loseCounter}`;
-    }
-    if (button.innerHTML === "scissors") {
-      resultSpace.innerHTML=`I choosed rock, you:${winCounter} Com:${loseCounter+=1}`;
-    }
-    }
-
-    if (randomNumber>=0.6){
-    if (button.innerHTML === "rock") {
-      resultSpace.innerHTML=`I choosed paper, you:${winCounter} Com:${loseCounter+=1}`;
-    } 
-    if (button.innerHTML === "paper") {
-      resultSpace.innerHTML=`I choosed paper, its a draw, you:${winCounter} Com:${loseCounter}`;
-    }
-    if (button.innerHTML === "scissors") {
-      resultSpace.innerHTML=`I choosed paper, you:${winCounter+=1} Com:${loseCounter}`;
-    }
-    }
-
-    if (randomNumber<0.6 && randomNumber>0.3){
-
-    if (button.innerHTML === "rock") {
-      resultSpace.innerHTML=`I choosed scissors, you:${winCounter+=1} Com:${loseCounter}`;
-    } 
-    if (button.innerHTML === "paper") {
-      resultSpace.innerHTML=`I choosed scissors, you:${winCounter} Com:${loseCounter+=1}`;
-    }
-    if (button.innerHTML === "scissors") {
-      resultSpace.innerHTML=`I choosed scissors so do you, its a draw, you:${winCounter} Com:${loseCounter}`;
-    }
-    
-  }
-
-  //checking who ever got 5 points first, and announcing whether the player won or lost
-    if (winCounter===5) {
-      finalResult.innerHTML="You won!";
-      resultSpace.appendChild(finalResult);
-      winCounter=0;
-      loseCounter=0;
-    }
-    if (loseCounter===5) {
-      finalResult.innerHTML="You lost!";
-      resultSpace.appendChild(finalResult);
-      winCounter=0;
-      loseCounter=0;
-    }
-
-  // reset
-  randomNumber=0;
-  })
+const all_buttons = document.querySelectorAll('.circleButtonRock');
 
 
-});
+
+
+all_buttons.forEach(bt => {
+    bt.addEventListener('click', (e) => {
+        humanChoice = e.target.innerHTML;
+
+        let randomNumber = (Math.random());
+
+        if (randomNumber <= 0.3) {
+            if (humanChoice === "Rock") {
+                humanScore = humanScore;
+                computerScore = computerScore;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `Both chose Rock Its a Tie`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+
+            }
+            if (humanChoice === "Paper") {
+                humanScore = humanScore + 1;
+                computerScore = computerScore;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `You Won this round`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+            if (humanChoice === "Scissors") {
+                humanScore = humanScore;
+                computerScore = computerScore + 1;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `Computer Won this round`;
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+        }
+
+        if (randomNumber >= 0.6) {
+            if (humanChoice === "Rock") {
+                humanScore = humanScore;
+                computerScore = computerScore + 1;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `Computer Won this round`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+            if (humanChoice === "Paper") {
+                humanScore = humanScore;
+                computerScore = computerScore;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `Both chose Paper Its a Tie`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+            if (humanChoice === "Scissors") {
+                humanScore = humanScore + 1;
+                computerScore = computerScore;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `You Won this round`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+        }
+
+        if (randomNumber < 0.6 && randomNumber > 0.3) {
+
+            if (humanChoice === "Rock") {
+                humanScore = humanScore + 1;
+                computerScore = computerScore;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `You Won this round`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+            if (humanChoice === "Paper") {
+                humanScore = humanScore;
+                computerScore = computerScore + 1;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `Computer Won this round`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+            if (humanChoice === "Scissors") {
+                humanScore = humanScore;
+                computerScore = computerScore;
+
+                document.getElementsByTagName("h1")[0].innerHTML = `Both chose Scissor Its a Tie`;
+
+                document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+                document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+            }
+
+
+
+
+
+        }
+        //checking who ever got 5 points first, and announcing whether the player won or lost
+        if (humanScore === 5) {
+
+            document.getElementsByTagName("h1")[0].innerHTML = `You Won!!!!`;
+            humanScore = 0;
+            computerScore = 0;
+
+            document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+            document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+
+        }
+        else if (computerScore === 5) {
+            document.getElementsByTagName("h1")[0].innerHTML = `Sorry You Lost the Game`;
+            humanScore = 0;
+            computerScore = 0;
+
+            document.getElementsByTagName("p")[0].innerHTML = `Player Score Is:${humanScore}`;
+            document.getElementsByTagName("p")[1].innerHTML = `Computer Score Is:${computerScore}`;
+        }
+    })
+
+})
+
+
+
+
+// .innerHTML = `Player Score Is:${humanScore}`
+
+
+
+
+
+
+
