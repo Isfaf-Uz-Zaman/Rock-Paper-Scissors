@@ -12,7 +12,7 @@
 
     width: 100%;
     height: 100vh;
-    background-color: white;
+    background-color: linear-gradient(88.6deg,#11639c,#097bbf 58.85%,#00ace0);
     justify-content: center;
     align-items: center;
 }
